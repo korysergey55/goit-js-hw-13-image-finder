@@ -1,0 +1,18 @@
+ul,
+ol{
+list-style: none;
+}
+.intup {
+  display: inline-block;
+  text-align: center;
+  margin-left: 50%;
+  margin-top: 30px;
+}
+
+.gallery {
+  display: flex;
+  justify-content:space-evenly
+ }
+
+
+/*# sourceMappingURL=/main.d4190f58.css.map */
