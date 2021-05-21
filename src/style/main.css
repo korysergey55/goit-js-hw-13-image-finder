@@ -11,7 +11,7 @@ body{
 .intup {
   display: inline-block;
   text-align: center;
-  margin-left: 50%;
+  margin-left: 42%;
   margin-top: 30px;
 }
 .input-button:hover {
@@ -23,6 +23,7 @@ body{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 0;
 }
 .photo-card {
   width: 350px;
@@ -45,9 +46,24 @@ body{
   align-items: center;
   justify-self: center;
 }
-[data-big-imege] {
+[data-big-image] {
   width: 346px;
   height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.load-more{
+  display: none;
+  text-align: center;
+  color: white;
+  background-color: royalblue;
+  margin-left: 35%;
+  width: 500px;
+  margin-bottom: 20px;
+}
+.load-more:hover{
+  cursor: pointer;
+}
+.is-open{
+  display: inline-block;
 }
