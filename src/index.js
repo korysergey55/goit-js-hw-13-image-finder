@@ -4,7 +4,6 @@ import cart_galary from './tpl/cart_galary.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-
 const formRef = document.querySelector('.search-form');
 const inputRef = document.querySelector('.intup');
 const galleryRef = document.querySelector('.gallery');
@@ -35,12 +34,13 @@ function loadMore(event) {
 function getImages(shouldScroll) {
   fetchData(searchWord, page).then(data => {
     const carts = cart_galary(data.hits);
-    if(data.hits.length === 0){
-      alert('Enter correct name of search!!!')
+    const hitsLength = data.hits.length;
+    if (hitsLength === 0) {
+      alert('Enter correct name of search!!!');
     }
     galleryRef.insertAdjacentHTML('beforeend', carts);
     btnLoadMoreRef.classList.add('is-open');
-    if (data.hits.length < 12) {
+    if (hitsLength < 12) {
       btnLoadMoreRef.classList.remove('is-open');
     }
     if (shouldScroll) {
