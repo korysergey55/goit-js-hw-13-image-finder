@@ -1,4 +1,4 @@
-// import './sass/main.scss';
+import './sass/main.scss';
 import { fetchData } from './js/api';
 import cart_galary from './tpl/cart_galary.hbs';
 import * as basicLightbox from 'basiclightbox';
@@ -32,21 +32,25 @@ function loadMore(event) {
 }
 
 function getImages(shouldScroll) {
-  fetchData(searchWord, page).then(data => {
-    const carts = cart_galary(data.hits);
-    const hitsLength = data.hits.length;
-    if (hitsLength === 0) {
-      alert('Enter correct name of search!!!');
-    }
-    galleryRef.insertAdjacentHTML('beforeend', carts);
-    btnLoadMoreRef.classList.add('is-open');
-    if (hitsLength < 12) {
-      btnLoadMoreRef.classList.remove('is-open');
-    }
-    if (shouldScroll) {
-      scroll();
-    }
-  });
+  fetchData(searchWord, page)
+    .then(data => {
+      const carts = cart_galary(data.hits);
+      const hitsLength = data.hits.length;
+      if (hitsLength === 0) {
+        alert('Enter correct name of search!!!');
+      }
+      galleryRef.insertAdjacentHTML('beforeend', carts);
+      btnLoadMoreRef.classList.add('is-open');
+      if (hitsLength < 12) {
+        btnLoadMoreRef.classList.remove('is-open');
+      }
+      if (shouldScroll) {
+        scroll();
+      }
+    })
+    .finally(() => {
+      formRef.reset();
+    });
 }
 
 function scroll() {

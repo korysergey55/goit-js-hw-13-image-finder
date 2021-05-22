@@ -1,3 +1,4 @@
+ 
 const keyPixabay = '21698474-fb36d7b3400c91ab3d227d6db';
 
 const fetchData = (searchWord, page) => {
@@ -9,3 +10,4 @@ const fetchData = (searchWord, page) => {
 };
 
 export { fetchData };
+ 
