@@ -1,8 +1,8 @@
 import './sass/main.scss';
-import { fetchData } from './js/api';
-import cart_galary from './tpl/cart_galary.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+import { fetchData } from './js/api';
+import cart_galary from './tpl/cart_galary.hbs';
 
 const formRef = document.querySelector('.search-form');
 const inputRef = document.querySelector('.intup');
@@ -23,34 +23,33 @@ function sentForm(event) {
   searchWord = inputRef.value;
   if (searchWord === '') return;
 
-  getImages(false);
+  getPrintImages(false);
 }
 
 function loadMore(event) {
   page += 1;
-  getImages(true);
+  getPrintImages(true);
 }
 
-function getImages(shouldScroll) {
-  fetchData(searchWord, page)
-    .then(data => {
-      const carts = cart_galary(data.hits);
-      const hitsLength = data.hits.length;
-      if (hitsLength === 0) {
-        alert('Enter correct name of search!!!');
-      }
-      galleryRef.insertAdjacentHTML('beforeend', carts);
-      btnLoadMoreRef.classList.add('is-open');
-      if (hitsLength < 12) {
-        btnLoadMoreRef.classList.remove('is-open');
-      }
-      if (shouldScroll) {
-        scroll();
-      }
-    })
-    .finally(() => {
-      formRef.reset();
-    });
+function getPrintImages(shouldScroll) {
+  fetchData(searchWord, page).then(data => {
+    const carts = cart_galary(data.hits);
+    const hitsLength = data.hits.length;
+
+    galleryRef.insertAdjacentHTML('beforeend', carts);
+    btnLoadMoreRef.classList.add('is-open');
+    formRef.reset();
+
+    if (hitsLength < 1) {
+      btnLoadMoreRef.classList.remove('is-open');
+    }
+    if (hitsLength === 0) {
+      alert('Enter correct name of search please!');
+    }
+    if (shouldScroll) {
+      scroll();
+    }
+  });
 }
 
 function scroll() {
